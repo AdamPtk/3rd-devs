@@ -1,20 +1,18 @@
-- Generatywne AI: Ocena możliwości przetwarzania tekstu, audio i obrazu.
-- Midjourney: Narzędzie do generowania grafik.
-- Stable Diffusion: Technologia generatywnej grafiki.
-- picthing: Narzędzie do usuwania tła z zdjęć, stworzone przez `Theo — t3.gg`.
-- Pieter Levels: Twórca projektów PhotoAI i InteriorAI.
-- PhotoAI: Projekt do tworzenia zdjęć.
-- InteriorAI: Projekt adresujący konkretne problemy w dziedzinie wnętrz.
-- Flux: Model generatywnego AI.
-- Replicate: Platforma do modeli AI.
-- Leonardo.ai: Platforma AI.
-- RunPod: Usługi związane z dostępem do GPU.
-- ComfyUI: Narzędzie do modyfikacji grafik.
-- Runway, Heygen, Kling AI: Narzędzia do animacji grafiki do formy wideo.
-- LLM: Modele dużego języka.
-- Meta Prompt: Składnik do tworzenia grafik.
-- htmlcsstoimage: Narzędzie do generowania grafik z szablonów HTML.
-- Vision Language Models: Modele łączące wizję i język.
-- eduweb.pl: Platforma zajmująca się edukacją i publikacjami.
-- HTMLCSStoImage: Usługa tworzenia grafik z HTML.
-- ComfyUI oraz HTMLCSStoImage: Narzędzia używane do wsparcia procesów marketingowych i produktowych.
+- Generatywne AI: możliwości przetwarzania tekstu, audio i interpretowania obrazu.
+- Midjourney: narzędzie do generowania grafik.
+- Stable Diffusion: narzędzie do generowania grafik.
+- picthing: narzędzie do usuwania tła ze zdjęć, stworzone przez Theo z `t3.gg`.
+- Pieter Levels: twórca projektów PhotoAI i InteriorAI.
+- Comparing AI-generated images two years apart — 2022 vs. 2024: artykuł ilustrujący postęp w generowaniu obrazów.
+- Flux: model do generowania elementów obrazu, takich jak tekst.
+- ComfyUI: narzędzie do generowania grafik.
+- Replicate: platforma oferująca dostęp do modeli przez API.
+- Leonardo.ai: platforma oferująca dostęp do modeli.
+- RunPod: platforma do samodzielnego hostingu modeli z dostępem do GPU.
+- Vision Language Models: modele językowe wykorzystujące wizję.
+- HTMLCSStoImage: narzędzie do generowania grafik z szablonów HTML.
+- Runway: narzędzie do animacji grafik do formy wideo.
+- Heygen: narzędzie do animacji grafik do formy wideo.
+- Kling AI: narzędzie do animacji grafik do formy wideo.
+- eduweb.pl: przykład wykorzystania szablonów do generowania grafik.
+

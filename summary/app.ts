@@ -42,7 +42,7 @@ async function extractInformation(title: string, text: string, extractionType: s
         role: 'user'
     };
 
-    const response = await openaiService.completion([extractionMessage, userMessage], 'gpt-4o', false) as ChatCompletion;
+    const response = await openaiService.completion([extractionMessage, userMessage], 'gpt-4o-mini', false) as ChatCompletion;
     return response.choices[0].message.content || '';
 }
 
@@ -87,7 +87,7 @@ Create the new article within <final_answer> tags. The final text must stand alo
         role: 'user'
     };
 
-    const response = await openaiService.completion([draftMessage], 'gpt-4o', false) as ChatCompletion;
+    const response = await openaiService.completion([draftMessage], 'gpt-4o-mini', false) as ChatCompletion;
     return response.choices[0].message.content || '';
 }
 
@@ -130,7 +130,7 @@ Your task: Execute comprehensive analysis of compressed version against source m
         role: 'system'
     };
 
-    const response = await openaiService.completion([critiqueMessage], 'gpt-4o', false) as ChatCompletion;
+    const response = await openaiService.completion([critiqueMessage], 'gpt-4o-mini', false) as ChatCompletion;
     return response.choices[0].message.content || '';
 }
 

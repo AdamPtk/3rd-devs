@@ -1,13 +1,22 @@
-- The article discusses the advancements and possibilities of generative AI in creating and manipulating graphics and photos.
-- It highlights how design and photo editing, traditionally separate from programming, are now influenced by AI tools like Midjourney and Stable Diffusion.
-- Examples are provided, such as the photo background removal tool Picthing and Pieter Levels' projects PhotoAI and InteriorAI, which demonstrate AI's potential in building practical products.
-- The article illustrates the progress in image generation capabilities over two years, noting improvements but also persisting limitations with models like Flux.
-- Limitations include difficulties in generating specific image elements like text or hands and following complex instructions.
-- Image manipulation examples include automatic background removal and element replacement or combination.
-- For programmatic applications, tools like Replicate and RunPod are mentioned for model hosting via API.
-- Templates are highlighted for generating marketing materials in various formats quickly.
-- Techniques for creating prompts in generative models like Midjourney are discussed, which use keywords and graphical references.
-- Emphasis is placed on experimenting with prompt strategies, combining elements, and using reference images to achieve desired styles.
-- The text mentions the future potential in merging generative graphics with HTML templates to automate graphic creation.
-- It suggests tools like ComfyUI and HTMLCSStoImage for programming-related applications in this field.
-- Concludes with the significance of these tools for automation in marketing or product processes and suggests further exploration, particularly for those unfamiliar with graphic processes.
+- The article focuses on the capabilities of generative AI in creating and manipulating graphics and photos, as well as the programming aspect associated with design tasks.
+- Traditionally, graphic design wasn't directly linked to programming except for developing tools or advanced web interactions.
+- However, generative AI technologies like Midjourney and Stable Diffusion are drawing interest not just from designers but also from developers.
+- Examples discussed include:
+  - **Picthing**: A tool for effectively removing backgrounds from images, highlighting improved quality and utility.
+  - **Pieter Levels' projects**:
+    - [PhotoAI](https://photoai.com/): Addresses specific photography-related issues.
+    - [InteriorAI](https://interiorai.com): Focuses on interior design, backed by statistics demonstrating usefulness.
+- The article emphasizes potential areas of development in generative graphics without the need for creating entirely new products; existing applications can leverage AI models for enhanced functionality.
+- The quality of AI-generated images has significantly improved from 2022 to 2024, though there are still limitations, especially in generating complex features like text and reflections.
+- Generating images from detailed prompts can yield varying results, and often simpler prompts may be more effective.
+- The article discusses tools available through APIs for programmatic access, such as [Replicate](tools/Replicate.md) and [Leonardo.ai](https://leonardo.ai/), and self-hosting options like [RunPod](https://blog.runpod.io/how-to-get-stable-diffusion-set-up-with-comfyui-on-runpod/).
+- Templates are valuable for generating graphics, especially for marketing and promotional content, where uniformity across formats is necessary.
+- The article outlines the capabilities of generative graphics models, including:
+  - Scaling images while maintaining details.
+  - Automatic background removal in challenging cases.
+  - Creating consistent images according to brand requirements.
+  - Utilizing existing graphics to produce various formats.
+  - Developing animations from static graphics.
+- Techniques for creating effective prompts emphasize the importance of keywords and control flags instead of detailed instructions. Experimentation is encouraged for the best results.
+- The generative tools, specifically [ComfyUI](ComfyUI) and [htmlcsstoimage](https://htmlcsstoimage.com), encourage automation and sophisticated design processes that support marketing needs.
+- The article concludes that understanding generative graphic models can enhance programming solutions and marketing strategies, underscoring the relevance of these technologies across industries.

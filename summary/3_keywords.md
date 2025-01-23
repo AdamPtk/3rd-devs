@@ -1,31 +1,33 @@
-- **Generatywne AI**: Możliwości w przetwarzaniu tekstu, audio i obrazu.
-- **Grafika generatywna**: Manipulacja i generowanie nowych grafik oraz zdjęć.
-- **Narzędzia graficzne AI**: Midjourney, Stable Diffusion.
-- **Picthing**: Narzędzie do usuwania tła ze zdjęć.
-  - Link: [picthing](https://pic.ping.gg/).
-- **Pieter Levels**: Projekty PhotoAI i InteriorAI.
-  - Link: [Pieter Levels](https://x.com/levelsio).
-  - Link: [PhotoAI](https://photoai.com/).
-  - Link: [InteriorAI](https://interiorai.com).
-- **Obecne możliwości**: Postęp generatywnej grafiki i jej ograniczenia (np. generacja tekstu, dłoni, zębów).
-- **API i hosting modeli**: Usługi jak Replicate, Leonardo.ai, RunPod.
-  - Link: [Replicate](tools/Replicate.md).
-  - Link: [Leonardo.ai](https://leonardo.ai/).
-  - Link: [RunPod](https://blog.runpod.io/how-to-get-stable-diffusion-set-up-with-comfyui-on-runpod/).
-- **Szablony graficzne**: Generowanie grafik dla marketingu, blogów, newsletterów.
-- **ComfyUI**: Narzędzie do generowania grafik z większą sterownością.
-  - Link: [ComfyUI](ComfyUI).
-- **Generatywna grafika przez API**: HTMLCSStoImage, Vision Language Models.
-  - Link: [htmlcsstoimage](https://htmlcsstoimage.com).
-- **Techniki projektowania promptów**: Różnice między grafiką generatywną a LLM.
-- **Eksperymentowanie z promptami**: Krótkie vs. bogate opisy, stosowanie meta promptów.
-- **Midjourney i jego ograniczenia**: Brak oficjalnego API, sterowność.
-  - Link: [Midjourney](tools/Midjourney.md).
-- **Wideo z generatywnej grafiki**: Runway, Heygen, Kling AI.
-  - Link: [Runway](https://runwayml.com/).
-  - Link: [Heygen](https://www.heygen.com/).
-  - Link: [Kling AI](https://klingai.com/).
-- **Automatyzacja grafiki**: Zaawansowane rozwiązania z HTMLCSStoImage i ComfyUI w procesach marketingowych i produktowych.
-- **Zastosowania w przemyśle**: Projektowanie, reklamy, edycja zdjęć.
+- generatywne AI: technologie do przetwarzania tekstu, audio i obrazu
+- projektowanie graficzne: rozwój narzędzi do tworzenia grafik i zdjęć
+- Midjourney: narzędzie do generowania obrazów
+- Stable Diffusion: model do generowania grafik
+- picthing: narzędzie do usuwania tła ze zdjęć
+- Pieter Levels: twórca projektów PhotoAI i InteriorAI
+- API: dostępność modeli generujących grafikę przez interfejsy
+- ComfyUI: narzędzie oferujące zaawansowane możliwość generacji grafik
+- RunPod: hosting GPU do uruchamiania modeli generatywnych
+- multimedia: generacja treści audio-wideo
+- modele oparte na szablonach: generowanie obrazów na podstawie HTML i CSS
+- Vision Language Models: modele łączące tekst i obraz
+- techniki projektowania promptów: pisanie skutecznych zapytań do modeli
+- animacje grafik: tworzenie wizualizacji wideo
+- HTMLCSStoImage: API do generacji grafik na podstawie HTML
+- automatyzacja marketingu: generowanie treści promocyjnych
+- Meta Prompt: prompty z możliwością podmiany opisów
+- statystki użyteczności: monitorowanie efektywności narzędzi generatywnych
+- prompty: zapytania do modeli generujących obraz
 
-Overall, generatywna grafika AI przeciwstawia nowe możliwości i narzędzia do projektowania oraz automatyzacji, co wyraźnie widać w przykładach i projektach prezentowanych w artykule.
+- link: [Midjourney](tools/Midjourney.md): narzędzie do generowania obrazów
+- link: [Stable Diffusion](glossary/Stable%20Diffusion.md): model do generowania grafik
+- link: [picthing](https://pic.ping.gg/): narzędzie do usuwania tła ze zdjęć
+- link: [PhotoAI](https://photoai.com/): projekt Pietera Levels
+- link: [InteriorAI](https://interiorai.com): projekt Pietera Levels
+- link: [Replicate](tools/Replicate.md): platforma z modelami AI
+- link: [Leonardo.ai](https://leonardo.ai/): narzędzie do generowania obrazów
+- link: [RunPod](https://blog.runpod.io/how-to-get-stable-diffusion-set-up-with-comfyui-on-runpod/): platforma do uruchamiania modeli na GPU
+- link: [ComfyUI](ComfyUI): zaawansowane narzędzie do generacji grafik
+- link: [htmlcsstoimage](https://htmlcsstoimage.com): generowanie grafik z HTML
+- link: [Runway](https://runwayml.com/): platforma do tworzenia animacji
+- link: [Heygen](https://www.heygen.com/): narzędzie do tworzenia wideo
+- link: [Kling AI](https://klingai.com/): AI do generacji wizualizacji

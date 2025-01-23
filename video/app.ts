@@ -106,8 +106,8 @@ async function processMedia(filePath: string, mimeType: string, displayName: str
 
 // Example usage
 const mediaFile = {
-  path: path.join(__dirname, 'test.mp3'), // Change this to 'video.mp4' for video
-  mimeType: 'audio/mp3', // Change this to 'video/mp4' for video
+  path: path.join(__dirname, 'test.mp4'), // Change this to 'video.mp4' or 'audio.mp3'
+  mimeType: 'video/mp4', // Change this to 'video/mp4' or 'audio/mp3'
   displayName: 'Test', // Change this accordingly
 };
 

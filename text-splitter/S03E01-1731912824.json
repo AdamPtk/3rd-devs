@@ -1,0 +1,93 @@
+[
+  {
+    "text": "![]({{$img0}})\n\nPrzynajmniej kilkukrotnie spotkaliśmy się już z problemami dotyczącymi limitów tokenów wejścia/wyjścia. Pomimo tego, że obecne modele SOTA są w stanie przetwarzać całkiem duże ilości treści, to i tak nie pozwala to na swobodną pracę z obszernymi źródłami danych.\n\nWarto też wiedzieć, że w publikacji [Leave no Context Behind] możemy przeczytać o możliwie nieskończonym oknie kontekstu. Według autorów (Google DeepMind) ich podejście sprawdza się w praktyce na skali 1-2M tokenów, o czym dziś możemy przekonać się sami, pracując z modelami Gemini. Natomiast modele konkurencji utrzymują swoje limity na poziomie 100-200 tysięcy tokenów. \n\nJeszcze kilka miesięcy temu można było mówić o tym, że nawet nieskończone okno kontekstu nie będzie użyteczne ze względu na wysokie koszty. Dziś już praktycznie wszyscy oferują cache'owanie promptów, co zmniejsza nie tylko koszty, ale także czas potrzebny na przetworzenie zapytania.\n\nBrakującym elementem układanki pozostają jednak limity tokenów wyjściowych, a także zdolność do przetwarzania innych formatów treści. Na stronie [Firebase]({{$url0}}) znajdziemy zestawienie wszystkich liczb dla modeli Gemini, które można potraktować w tym zakresie jako lidera. \n\n![]({{$img1}})\n\nLimit liczby tokenów wyjściowych jest szczególnie uciążliwy w przypadku **transformacji dokumentów** takich jak korekta, tłumaczenie czy szczegółowy przegląd. W przypadku takich zadań konieczny jest podział całości na mniejsze fragmenty (tzw. Chunking), a następnie przetwarzanie ich indywidualnie. \n\nTechniczna zdolność do przetworzenia obszernych treści nie jest też jedynym elementem, który trzeba brać tutaj pod uwagę. Równie ważna jest także zdolność do utrzymania uwagi, co obrazują testy typu \"Needle in the Haystack\" (więcej o tym w [Lost in the Middle]({{$url1}})). Chodzi więc o zdolność przywołania określonej informacji z dostarczonego kontekstu. Według różnych źródeł ([1]({{$url2}}), [2]({{$url3}})) aktualnie najlepsze wyniki osiąga OpenAI i model GPT-4o. Aczkolwiek moje doświadczenia sugerują raczej, że nawet w jego przypadku mówimy o precyzji na poziomie 85-95%. \n\n![]({{$img2}})\n\nProblem w tym, że test odnajdywania pojedynczych informacji w tekście jest niezwykle ograniczony i nie sprawdza umiejętności związanych z **podążaniem za instrukcjami** oraz zdolnością **\"rozumienia\"** treści. Te obszary również pozostają wyzwaniem dla obecnych modeli.\n\nNo i ostatecznie, dostarczanie treści do modelu to aktywność, która nie sprowadza się wyłącznie do dodawania kolejnych plików czy treści stron www. Nierzadko mówimy o dynamicznych danych oraz konieczności dostarczenia kontekstu, który pozwoli modelowi lepiej posługiwać się nowymi informacjami w praktyce. Przykładowo, jeśli powiem \"dziś spędziłem sporo czasu przy Tech•sistence\", to z perspektywy modelu nie wiadomo, czy mówię o projekcie, nowej grze, czy książce, ponieważ w jego bazowej wiedzy brakuje informacji na ten temat.\n",
+    "metadata": {
+      "tokens": 977,
+      "headers": {},
+      "urls": [
+        "https://firebase.google.com/docs/vertex-ai/gemini-models",
+        "https://arxiv.org/pdf/2307.03172",
+        "https://medium.com/@lars.chr.wiik/openais-gpt-4o-vs-gemini-1-5-context-memory-evaluation-1f2da3e15526",
+        "https://nian.llmonpy.ai/intro"
+      ],
+      "images": [
+        "https://cloud.overment.com/S03E01-1731754226.png",
+        "https://cloud.overment.com/2024-10-05/aidevs3_tokens-958b3bb5-b.png",
+        "https://cloud.overment.com/2024-10-05/aidevs3_haystack-ed225df5-1.png"
+      ]
+    }
+  },
+  {
+    "text": "\n## Koncepcja dokumentów\n\nSam temat przygotowywania treści na potrzeby modelu poruszaliśmy już w lekcji S01E02 — Kontekst. Natomiast teraz zajmiemy się nim ponownie, ale nie tylko w teorii, lecz także w praktyce.\n\nDokument to obiekt składający się z głównej treści oraz metadanych, które opisują jego cechy i nadają kontekst. W kontekście LLM zwykle jest to mały fragment dłuższej treści z zewnętrznego źródła, który dodajemy do indeksów silników wyszukiwania na potrzeby Retrieval-Augmented Generation lub innych scenariuszy wymagających odnalezienia konkretnych zestawów informacji. \n\nPrzykład dokumentu wygenerowanego na podstawie jednego z moich wpisów widzimy poniżej (właściwość `text` została przeze mnie ucięta i domyślnie jest nieco dłuższa). W metadanych znajdują się więc **informacje na temat źródła**, **dane pozwalające na zlokalizowanie oryginalnego miejsca pochodzenia dokumentu**, jego unikatowy identyfikator oraz linki, które w treści zostały zamienione placeholderami.\n\n![]({{$img0}})\n\nStruktura metadanych będzie zależała od konkretnego przypadku, ale ogólne założenie mówi o tym, aby uwzględnić tam informacje, które:\n\n- pozwolą na wskazanie źródła i dokumentów sąsiadujących\n- pozwolą nakreślić kontekst (np. z jakiego pliku pochodzi dokument)\n- pozwolą skutecznie filtrować dokumenty (np. na podstawie daty, roli uprawnień czy kategorii) — te metadane nie są uwzględnione w powyższym przykładzie\n- pozwolą na kompresję treści dokumentu (przykładem są linki, które zamieniłem na placeholdery)\n\nZatem warto myśleć o dokumentach tak, że gdy budujemy je na podstawie jakiegoś pliku czy bazy danych, to musimy wygenerować je tak, aby model posiadał wystarczający kontekst na ich temat oraz aby silnik wyszukiwania mógł skutecznie do nich dotrzeć — obie te rzeczy staną się w pełni zrozumiałe w dalszych lekcjach na temat wyszukiwania. \n\nTreść dokumentów zwykle generowana jest poprzez Text Splitting lub jest generowana przez model lub bezpośrednio przez człowieka. Choć frameworki takie jak LangChain wydają się promować dzielenie treści na podstawie długości lub ewentualnie kolejnych znaków specjalnych (tzw. recursive text splitting), to techniki te przeciętnie sprawdzają się w praktyce, aczkolwiek według niektórych zastosowanie dodatkowo tzw. \"overlap\" (nakładania się dokumentów) bywa skuteczne, ale wymaga to nakładania na siebie dużej części dokumentów (np. 50%). \n\nZresztą zobaczmy to w praktyce na przykładzie cytatu z Władcy Pierścieni. \n\nW pierwszym przykładzie, dzielimy tekst na podstawie liczby znaków, konkretnie 250. Otrzymujemy więc pozornie dobrze wyglądające dokumenty, ale gdy spojrzymy na każdy z nich indywidualnie, to nawet człowiekowi momentami trudno byłoby wykorzystać je w praktyce. \n\n![]({{$img1}})\n\nWidzimy, że na przykładzie zdania \"Three were given to the Elves immortal, wisest\" ... \"and fairest of all beings\", zastosowanie wspomnianego \"overlap\" pomogłoby utrzymać kontekst. Jednak szansa na to, że stanie się tak dla możliwie wszystkich dokumentów, jest niska. \n",
+    "metadata": {
+      "tokens": 917,
+      "headers": {
+        "h2": [
+          "Koncepcja dokumentów"
+        ]
+      },
+      "urls": [],
+      "images": [
+        "https://cloud.overment.com/2024-10-05/aidevs3_document-efc54143-8.png",
+        "https://cloud.overment.com/2024-10-05/aidevs3_character-2b36617d-b.png"
+      ]
+    }
+  },
+  {
+    "text": "\nSytuacja znacznie się poprawia w momencie, gdy tekst nie zostaje podzielony względem długości, lecz na podstawie akapitów lub ewentualnie zdań. To jest tzw. recursive text splitting, w przypadku którego wykorzystujemy zestaw znaków specjalnych (np. podwójna nowa linia, nowa linia, kropkę/znak zapytania/wykrzyknik lub spację). W tym przypadku utracenie kontekstu dla konkretnego fragmentu tekstu jest dość niskie, choć nadal prawdopodobne.\n\n![]({{$img0}})\n\nWspomniałem, że tematem docierania do dokumentów (tzw. retrieval) będziemy zajmować się w dalszych lekcjach, jednak już teraz musimy się nad tym na moment zatrzymać. Powodem jest artykuł ze strony Anthropic, poruszający temat tzw. [Contextual Retrieval]({{$url0}}).\n\nAby go zrozumieć, wystarczy rzucić okiem na dwa poniższe schematy. Pierwszy przedstawia typowy system RAG, w przypadku którego dla zestawu danych (corpus) tworzymy dokumenty (chunks) i indeksujemy w klasycznej wyszukiwarce oraz w bazie wektorowej. Później na podstawie zapytania użytkownika, odwołujemy się do indeksów i pobieramy istotne dokumenty na potrzeby kontekstu dla LLM.\n\n![]({{$img1}})\n\nProblem w tym, że nadal dokumenty w tym przypadku mogą utracić swój kontekst, ale co gorsza, mogą w ogóle nie zostać odnalezione, nawet pomimo wyszukiwania hybrydowego.\n\nSugestia Anthropic polega więc na tym, aby uwzględnić dodatkowy krok na etapie tworzenia dokumentów. Polega on na tym, aby każdy z nich przeprocesować przez LLM i prompt, który nada mu kontekst na podstawie całego dokumentu. Pozornie wygląda to na bardzo kosztowną operację, ale dzięki cache'owaniu promptu sytuacja się całkowicie zmienia. W dodatku połączenie tego z modelami takimi jak Gemini od Google DeepMind pozwoli przetworzyć całkiem duże zestawy danych. \n\n![]({{$img2}})\n\nPrompt o którym mowa, znajduje się poniżej. Jak widać, nie jest szczególnie złożony, ale jego struktura nie jest przypadkowa. Fakt, że całość dokumentu znajduje się na początku promptu, pozwala na skorzystanie z mechanizmu pamięci podręcznej. \n\n![]({{$img3}})\n\nNo i dla naszego przykładowego cytatu, pierwszy dokument został opisany w sposób widoczny poniżej. Taka treść połączona z jego treścią może zostać dodana do indeksów wyszukiwania. \n\n![]({{$img4}})\n\n## Zaawansowany text splitter\n\nW przykładzie `text-splitter` znajduje się klasa zawierająca logikę z której korzystam głównie w połączeniu z treścią zapisaną w formacie markdown (w tym stronami) oraz transkrypcjami filmów z YouTube. Kod, który się tam znajduje jest dość złożony, ponieważ jego zadaniem jest nie tylko podzielenie treści, ale też wykonanie tego zadania z możliwie małą liczbą przeliczeń tokenów w celu zwiększenia wydajności. Logika ta prawdopodobnie nie jest pozbawiona błędów, ale jest najlepszą do której udało mi się dojść. Zatem jeśli znajdziesz tam jakieś błędy, śmiało podziel się swoimi spostrzeżeniami w komentarzu.\n",
+    "metadata": {
+      "tokens": 955,
+      "headers": {
+        "h2": [
+          "Zaawansowany text splitter"
+        ]
+      },
+      "urls": [
+        "https://www.anthropic.com/news/contextual-retrieval"
+      ],
+      "images": [
+        "https://cloud.overment.com/2024-10-05/aidevs3_split-63646f6b-f.png",
+        "https://cloud.overment.com/2024-10-05/aidevs3_standard_rag-fb37a776-f.png",
+        "https://cloud.overment.com/2024-10-05/aidevs3_contextual-3ebe6fbe-8.png",
+        "https://cloud.overment.com/2024-10-05/aidevs3_contextual_prompt-d8e4eb00-8.png",
+        "https://cloud.overment.com/2024-10-05/aidevs3_document_context-886ea91c-1.png"
+      ]
+    }
+  },
+  {
+    "text": "\nSam przykład po prostu wczytuje treść trzech różnych dokumentów: nieustrukturyzowany tekst, transkrypcję youtube oraz artykuł w formacie markdown. Zdanie splittera polega więc na tym, aby przejść przez treść i wygenerować listę dokumentów, których długość nie przekroczy dopuszczalnego limitu, a jednocześnie nie będzie zbyt krótka. Wyjątek stanowią tylko dokumenty znajdujące się na samym końcu, które siłą rzeczy mogą znacznie odstawać od reszty.\n\n![]({{$img0}})\n\nMożesz przetestować działanie tego splittera na dowolnym artykule lub tekście, najlepiej w formacie markdown. W dalszej części kursu będziemy z niego korzystać niemal na każdym kroku, więc warto się z nim zapoznać oraz z generowanymi wynikami.\n## Praca z nieustrukturyzowanymi danymi\n\nTechniki pracy, które poznaliśmy podczas lekcji takich jak S02E04 — Połączenie wielu formatów czy S02E05 — Multimodalność w praktyce, pozwalające na transformację treści, są przydatne również przy pracy nad dokumentami tworzonymi na podstawie nieustrukturyzowanych danych. Mam na myśli zarówno pojedyncze dokumenty, których zawartość musi zostać przetworzona, jak i zewnętrzne źródła informacji, z których musimy wyodrębnić tylko te dane, które nas faktycznie interesują. \n\nW przykładzie `unstructured` zadanie modelu polega na przygotowaniu listy dokumentów zawierających listę narzędzi pojawiających się w moich wpisach na Tech•sistence. Zwykle są to dość obszerne artykuły, więc generowanie dokumentów na podstawie oryginalnej treści uwzględniałoby mnóstwo treści, która w tym przypadku nie jest potrzebna. Dlatego korzystając z cache'owania promptu, w pierwszej kolejności kompresuję artykuł tak, aby skupiał się tylko na niezbędnych danych.\n\n![]({{$img1}})\n\nPo splitter sięgam dopiero w drugiej kolejności, otrzymując dokumenty skupiające się wyłącznie na istotnej dla nas treści. \n\n![]({{$img2}})\n\nAlternatywnie może nam zależeć na wygenerowaniu dokumentów dla każdego z narzędzi indywidualnie. Jak widać poniżej, to również jest możliwe i co więcej, pozwoli nam na dalsze rozbudowywanie ich zawartości. \n\n![]({{$img3}})\n\nWidzimy zatem, że przetwarzanie treści może opierać się na zaawansowanych transformacjach, których uczyliśmy się dotychczas. Teraz, korzystając z możliwości cache'owania promptu, możemy to robić znacznie szybciej i taniej.\n## Kategoryzacja i filtrowanie\n\nNasze pierwsze spotkania z Retrieval-Augmented Generation, embeddingiem i bazami wektorowymi sugerują, że wygenerowane powyżej dokumenty możemy skutecznie przeszukiwać, na podstawie jedynie zbliżonego opisu narzędzi. Jeszcze tylko przypomnę, że w procesie przeszukiwania zwykle ograniczamy liczbę zwracanych wyników. Oznacza to, że jeśli zapytam o \"writing tool\", to treść tego zapytania zostanie skojarzona z opisami narzędzi. Wyszukiwarka zwróci np. 10 najbliższych dopasowań, z których model wybierze 4 — Notion, iA Writer, Paper i Obsidian.\n",
+    "metadata": {
+      "tokens": 925,
+      "headers": {
+        "h2": [
+          "Praca z nieustrukturyzowanymi danymi",
+          "Kategoryzacja i filtrowanie"
+        ]
+      },
+      "urls": [],
+      "images": [
+        "https://cloud.overment.com/2024-10-05/aidevs3_splitting_test-965789f4-c.png",
+        "https://cloud.overment.com/2024-10-06/aidevs3_extract-ce1cab77-a.png",
+        "https://cloud.overment.com/2024-10-06/aidevs3_narrowed_context-8fe06240-3.png",
+        "https://cloud.overment.com/2024-10-06/aidevs3_tools-80cb7caa-0.png"
+      ]
+    }
+  },
+  {
+    "text": "\nInaczej mówiąc, w przypadku precyzyjnych zapytań celujących w konkretne dokumenty, skuteczność jaką otrzymamy, będzie wysoka o ile opisy narzędzi będą wystarczająco dobre. \n\n![]({{$img0}})\n\nAle jeśli nasze zapytanie będzie bardzo ogólne, np. \"wypisz wszystkie aplikacje z bazy danych\", to powiązanie pomiędzy zapytaniem, a opisami już nie występuje lub jest znacznie niższe. Co gorsza, ograniczenie liczby zwracanych wyników sprawi, że otrzymamy max 10 rekordów. \n\nZ tego powodu trzeba mieć na uwadze dodatkowe kategorie i tagi, które pomogą w docieraniu do dokumentów nawet w sytuacji, gdy wyszukiwanie semantyczne będzie niewystarczające. \n\nZatem w omawianym wyżej przykładzie, moglibyśmy do każdego z dokumentów dodać `type` ustawiony na `tool` oraz `tagi` łączące np. aplikacje do notowania czy zarządzania zadaniami. Obie te informacje pozwolą na rozbudowanie procesu docierania do danych oraz filtrowanie wyników. \n\nW praktyce będziemy się tym jeszcze zajmować, lecz wspominam o tym już teraz, ponieważ stanowi to niezwykle ważny element planowania struktury dokumentów oraz strategii przechowywania i docierania do informacji. \n## Podsumowanie\n\nTemat tworzenia dokumentów stanowi fundament na którym będziemy budować praktycznie wszystkie pozostałe narzędzia. Jak widać nawet na przykładach, przez które przeszliśmy, kluczowe jest tutaj zaplanowanie ich struktury ze szczególnym uwzględnieniem procesu wyszukiwania i dostarczania do kontekstu.\n\nDlatego jeśli z dzisiejszej lekcji masz zabrać ze sobą tylko jedną rzecz, to nie będzie to przykład `text-splitter` i uwzględniona w nim logika podziału treści na mniejsze fragmenty. Z pomocą LLM możesz łatwo przełożyć ją na swój język programowania lub nawet rozwinąć o nowe możliwości. \n\nJako dodatkowy wątek, zwracam uwagę na wspomniany artykuł Anthropic na temat [Contextual Retrieval]({{$url0}}), który z dużym prawdopodobieństwem będzie miał ogromne przełożenie na jakość rozwijanych przez Ciebie agentów AI.",
+    "metadata": {
+      "tokens": 598,
+      "headers": {
+        "h2": [
+          "Podsumowanie"
+        ]
+      },
+      "urls": [
+        "https://www.anthropic.com/news/contextual-retrieval"
+      ],
+      "images": [
+        "https://cloud.overment.com/2024-10-06/aidevs3_simple_query-bb8069c4-5.png"
+      ]
+    }
+  }
+]

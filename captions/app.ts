@@ -114,7 +114,7 @@ async function refineDescription(image: Image): Promise<Image> {
 
     console.log(userMessage);
 
-    const response = await openaiService.completion([refineDescriptionSystemMessage, userMessage], 'gpt-4o', false) as ChatCompletion;
+    const response = await openaiService.completion([refineDescriptionSystemMessage, userMessage], 'gpt-4o-mini', false) as ChatCompletion;
     const result = response.choices[0].message.content || '';
     return { ...image, description: result };
 }

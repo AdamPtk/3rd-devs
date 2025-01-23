@@ -1,30 +1,140 @@
-Here's a detailed analysis of the compressed version against the original article:
+### Analysis of Compressed Version Against Original Article
 
-1. **Title:**
-   - The title "AI_devs 3, Lekcja 1, Moduł 1 — Interakcja z dużym modelem językowym" does not match the original article's theme or content. The original article does not provide a specific title suggesting this focus.
+Below is a thorough examination of discrepancies between the compressed version and the original article, along with the necessary corrections.
 
-2. **Content Accuracy:**
-   - The compressed version accurately mentions various generative AI tools and their applications, including Midjourney, Stable Diffusion, picthing, PhotoAI, and InteriorAI.
-   - It correctly points out the significance of tools for background removal and Pieter Levels' AI projects.
-   - Discusses the evolution and current capabilities of generative models, highlighting improvements and ongoing challenges.
+---
 
-3. **Omissions:**
-   - The original article includes specific links to definitions and external sites (e.g., [Midjourney](tools/Midjourney.md), [Stable Diffusion](glossary/Stable%20Diffusion.md), etc.), which are only partially represented in the compressed version.
-   - The source document also details specific techniques and challenges in generating complex image elements, like hands and text, which have been simplified in the summary.
-   - Specific examples of visualizations and practical uses, such as the eduweb.pl's template usage and Midjourney's prompt techniques, are briefly covered but not in the depth offered by the source material.
+### 1. Title and Introduction
+#### Original:
+- Title: "AI_devs 3, Lekcja 1, Moduł 1 — Interakcja z dużym modelem językowym"
+- Introduction mentions various aspects of generative AI and emphasizes both design and programming perspectives.
 
-4. **Technical Details:**
-   - The compressed version briefly refers to API access, model hosting, and specific platforms like Replicate and RunPod but omits deeper explanations found in the original.
-   - The section on templates and techniques for prompt design lacks detailed examples and recommendations provided in the original content.
+#### Compressed:
+- The title has not been altered.
+- The introduction fundamentally changes the tone, slightly rephrasing the merger of programming and graphics creation.
 
-5. **Conceptual Completeness:**
-   - While general themes around generative AI's applications and limitations are retained, several nuanced points from the original article about the evolution of generative AI capabilities over two years are not thoroughly captured.
-   - The summary fails to cover all aspects of integrating AI in programming, such as automation strategies and specific industry applications.
+**Discrepancy**: The phrase "dotychczas nie były bezpośrednio związane z programowaniem" does not directly match the original context regarding how graphic design was previously viewed compared to programming.
 
-6. **Format Compliance:**
-   - The compressed version maintains proper markdown formatting, particularly with images and links, which facilitates easy cross-referencing similar to the original.
+**Correction**: Maintain the original emphasis on the evolving relationship without altering the phrasing.
 
-7. **Incorrect Additions:**
-   - The introduction to "Lekcja 1, Moduł 1 — Interakcja z dużym modelem językowym" appears to add context not supported by the original text, which focuses more on practical applications in image processing than theoretical interaction with language models.
+### 2. Section Headings
+#### Original:
+- Subsections under “1. Wprowadzenie do tematu” include more elaboration without stated subheadings in the compressed version.
 
-In conclusion, while the compressed version aptly condenses the article's core points, it simplifies or omits several technical details, conceptual nuances, and examples that are crucial for full comprehension. It also introduces a title and thematic focus not present in the original, potentially misleading the reader regarding the content's nature. A revision should ensure the inclusion of all essential details, adherence to original themes, and correction of unsupported elements.
+#### Compressed:
+- Compressed version uses headings like "1.1 Picthing" and "1.2 Projekty Pieter Levels", which is a deviation from the original structure.
+
+**Discrepancy**: It changes the subsection structure without clear demarcation.
+
+**Correction**: Maintain the original context and structure, offering complete phrases and contexts without assuming logical renaming.
+
+### 3. Detailed Content Summary
+#### 3.1 Picthing
+- Original provided context about improvements and highlights its practical utility.
+
+#### Compressed:
+- The description adequately covers the utility, but lacks details about background and creator verification.
+
+**Discrepancy**: Missing mention of how the generative AI significantly improves background removal quality.
+
+**Correction**: Include "znacznym wzroście jakości", showcasing the original's depth.
+
+### 4. Pieter Levels Projects
+#### Original:
+Detailed explanations of the significance of each of Pieter Levels' projects.
+
+#### Compressed:
+- Adequately lists projects but lacks depth regarding the implications of the statistics shared.
+
+**Discrepancy**: The compressed version elides the importance of the statistics emphasized in the original.
+
+**Correction**: Add: "i są skuteczne, co potwierdzają statystyki przedstawiane przez Pietera."
+
+### 5. Image Presentation
+#### Original:
+Includes images with specific descriptions that relate directly to their contents.
+
+#### Compressed:
+Images are present but lack detailed accompanying context or discussion that informs the reader about their relevance more thoroughly.
+
+**Discrepancy**: Compressed version lacks essential contextual framing of images which diminishes understanding.
+
+**Correction**: Introduce proper sentences to frame images, explaining the relevance as observed in the original.
+
+### 6. Current Image Generation Capabilities
+#### 6.1 Development
+- Original provided a nuanced look at advances from 2022 to 2024 and set the stage for discussing capabilities in graphic generation. 
+
+#### Compressed:
+Summarizes the advancements but fails to reflect specific qualitative assessments regarding image generation technologies.
+
+**Discrepancy**: Implicit conclusions in the compressed version don’t emphasize qualitative metrics present in original discourse.
+
+**Correction**: Accurately reflect ranges of improvements and limitations regarding the models’ functionality.
+
+### 7. Limitations Section
+#### Original:
+Explicitly discusses ongoing difficulties in generating complex image details.
+
+#### Compressed:
+It mentions limitations but lacks the structured nuanced approach observed in the original.
+
+**Discrepancy**: The detail about expectations compared to technological capabilities is distinctly absent.
+
+**Correction**: Maintain the original tone discussing the expectations versus capabilities in-depth.
+
+### 8. Prompts for Models
+#### Original:
+Focused on succinct prompt design, including examples.
+
+#### Compressed:
+Condensed prompt techniques but missed the subtle advice about experimenting with prompts.
+
+**Discrepancy**: An essential aspect of using varied approaches to prompts, which is valuable for the reader.
+
+**Correction**: Reinforce the experimental tone with "Eksperymentowanie z różnymi podejściami do promptów…"
+
+### 9. HTML & CSS Integration 
+#### Original:
+Illustrated the capabilities with HTMLCSStoImage in detail and practical application examples.
+
+#### Compressed:
+Mentioned but without the full depth of integration possibilities explained.
+
+**Discrepancy**: Compression lacks in conveying the significance of this technology in broader application scopes.
+
+**Correction**: Emphasize how HTML and CSS can advance integration with generative features.
+
+### 10. Final Remarks
+#### Original:
+Includes a strong concluding call to action for understanding the tools for the reader’s benefit.
+
+#### Compressed:
+Condensed conclusion present but loses motivational phrasing from the original.
+
+**Discrepancy**: The emphasis on knowing necessary tools for leveraging advantages in the field is watered down.
+
+**Correction**: Reinstate the encouragement presented in the conclusion of the original.
+
+### 11. Missing Content
+The compressed version lacks:
+- Mention of specific conceptual ties between AI models and user interactions.
+- Explicit encouragement to view mid-level prompts as facilitating effective generation.
+- Details surrounding generative AI's potential beyond mere image generation, into broader digital content creation.
+
+### 12. Unauthorized Additions 
+There are no unauthorized additions noted beyond structural and condensing transformations. All presented content is sourced or summarized.
+
+---
+
+### Summary of Corrections Needed
+1. Adjust phrasing in the title and introduction to retain context.
+2. Ensure each subsection maintains rich content density as in the original.
+3. Include specifics about tools and projects to maintain critical context.
+4. Refrain from simplifying nuanced discussions about limitations and developments.
+5. Provide full image context, ensuring readers glean insights from graphical references.
+6. Stress experimental usage suggestions for prompt generation.
+7. Maintain last section's motivational tone for reader engagement.
+
+### Conclusion
+The compression process sacrificed essential details and context necessary for full comprehension. Detailed adjustments to restore phrasing accuracy, depth, and contextual relevance are required for the compressed article to align perfectly with the original.

@@ -44,8 +44,9 @@ async function main() {
             { role: 'user', content: query }
         ]
     }) as ChatCompletion;
-
+    
     const authors = determineAuthor.choices[0].message.content?.split(',').map(a => a.trim()) || [];
+    console.log(authors);
 
     const filter = authors.length > 0 ? {
       should: authors.map(author => ({

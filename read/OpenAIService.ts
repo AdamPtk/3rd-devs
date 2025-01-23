@@ -146,7 +146,7 @@ export class OpenAIService {
 
   async speakEleven(
     text: string,
-    voice: string = "21m00Tcm4TlvDq8ikWAM",
+    voice: string = "nPczCjzI2devNBz1zQrb",
     modelId: string = "eleven_turbo_v2_5"
   ) {
     try {

@@ -43,7 +43,7 @@ async function main() {
     queries.forEach((query, index) => {
         console.log(`Query: ${query}`);
         searchResults[index].forEach((result, resultIndex) => {
-            console.log(`  ${resultIndex + 1}. ${result.payload.text} (Score: ${result.score})`);
+            console.log(`  ${resultIndex + 1}. ${result.payload?.text} (Score: ${result.score})`);
         });
         console.log();
     });
